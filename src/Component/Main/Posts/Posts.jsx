@@ -2,24 +2,18 @@ import "./Posts.scss";
 import { Redirect } from "react-router-dom";
 import Post from "./Post/Post";
 import { useEffect, useState } from "react";
+import { connect, useSelector } from "react-redux";
+import fetchPosts from "../../../store/actions/Post";
+
 function Posts(props) {
-  const [respData, setRespData] = useState([]);
+  const respData = [];
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => {
-        //console.log("resp", response);
-        return response.json();
-      })
-      .then((json) => {
-        setRespData(json);
-        //console.log("json", json);
-      });
-    //console.log("hello");
+    //props.fetchPosts();
   });
 
   return (
     <div className="Posts">
-      {!props.isLogined ? (
+      {!props.isLogedIn ? (
         <Redirect from="/posts" to="/login" />
       ) : (
         <Redirect from="/posts" to="/posts" />
@@ -38,5 +32,15 @@ function Posts(props) {
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    respData: state.respData
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchPosts: () => dispatch(fetchPosts())
+  };
+};
 
-export default Posts;
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);

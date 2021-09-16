@@ -1,20 +1,21 @@
 import "./Login.scss";
 import { NavLink, withRouter } from "react-router-dom";
 import { useState } from "react";
+import { useDispatch, useSelector, connect } from "react-redux";
 
 function Login(props) {
-  let data = {};
-  let [errorText, setErrorText] = useState("");
+  const data = {};
+  const errorText = useSelector((state) => state.login.errorText);
+  const dispatch = useDispatch();
   let checkData = () => {
-    setErrorText("");
     if (data.Login === "admin" && data.Password === "admin") {
-      console.log("OK");
-      props.setIsLogined(true);
+      dispatch({ type: "LOGIN" });
       props.history.push("/");
     } else {
-      console.log("Whats wrong");
-      setErrorText("Wrong Login or Password");
+      //console.log("Whats wrong");
+      dispatch({ type: "WRONG" });
     }
+    console.log(props);
   };
   let inputHandler = (event) => {
     let name = event.target.name;
@@ -45,4 +46,4 @@ function Login(props) {
   );
 }
 
-export default withRouter(Login);
+export default connect()(withRouter(Login));

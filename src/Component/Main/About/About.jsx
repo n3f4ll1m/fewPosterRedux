@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 function About(props) {
   return (
     <div className="About">
-      {!props.isLogined ? (
+      {!props.isLogedIn ? (
         <Redirect from="/about" to="/login" />
       ) : (
         <Redirect from="/about" to="/about" />

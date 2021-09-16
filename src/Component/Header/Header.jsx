@@ -2,10 +2,10 @@ import "./Header.scss";
 import { NavLink, withRouter } from "react-router-dom";
 function Header(props) {
   let logoutHandler = () => {
-    props.setIsLogined(false);
+    props.setIsLogedIn(false);
   };
 
-  return props.isLogined ? (
+  return props.isLogedIn ? (
     <header>
       <div className="Logo">
         <NavLink to="/">LOGO</NavLink>

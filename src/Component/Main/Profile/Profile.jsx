@@ -1,9 +1,13 @@
 import "./Profile.scss";
 import { Redirect } from "react-router-dom";
+import { connect, useSelector } from "react-redux";
+
 function Profile(props) {
+  const isLogedIn = useSelector((state) => state.login.errorText);
+  console.log(isLogedIn);
   return (
     <div className="Profile">
-      {!props.isLogined ? (
+      {!isLogedIn ? (
         <Redirect from="/" to="/login" />
       ) : (
         <Redirect from="/" to="/" />
@@ -31,4 +35,4 @@ function Profile(props) {
   );
 }
 
-export default Profile;
+export default connect()(Profile);

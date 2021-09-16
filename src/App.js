@@ -2,19 +2,27 @@ import Header from "./Component/Header/Header";
 import Main from "./Component/Main/Main";
 import "./App.scss";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 function App() {
-  const [state, setState] = useState("login");
-  const [isLogined, setIsLogined] = useState(false);
+  //const [isLogedIn, setIsLogedIn] = useState(false);
+  // const counter = useSelector((state) => state.login.isLogedIn);
+  // return (
+  //   <div>
+  //     isLogedIn:
+  //     {String(counter)}
+  //   </div>
+  // );
 
   return (
     <div className={"App"}>
-      <Header state={state} isLogined={isLogined} setIsLogined={setIsLogined} />
+      <Header
+      // isLogedIn={isLogedIn}
+      // setIsLogedIn={setIsLogedIn}
+      />
       <Main
-        state={state}
-        setState={setState}
-        isLogined={isLogined}
-        setIsLogined={setIsLogined}
+      // isLogedIn={isLogedIn}
+      // setIsLogedIn={setIsLogedIn}
       />
     </div>
   );

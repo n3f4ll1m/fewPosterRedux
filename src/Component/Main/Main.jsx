@@ -7,34 +7,37 @@ import About from "./About/About";
 import Contacts from "./Contacts/Contacts";
 import { Route, Switch } from "react-router-dom";
 import Profile from "./Profile/Profile";
+
 function Main(props) {
   return (
     <section className="Main">
       <div className="Container">
         <Switch>
           <Route path="/" exact>
-            <Profile isLogined={props.isLogined} />
+            <Profile
+            //isLogedIn={props.isLogedIn}
+            />
           </Route>
           <Route path="/login">
             <Login
-              state={props.state}
-              setState={props.setState}
-              isLogined={props.isLogined}
-              setIsLogined={props.setIsLogined}
+            // isLogedIn={props.isLogedIn}
+            // setIsLogedIn={props.setIsLogedIn}
             />
           </Route>
           <Route path="/sign-up">
             <RegForm />
           </Route>
           <Route path="/contacts">
-            <Contacts isLogined={props.isLogined} />
+            <Contacts isLogedIn={props.isLogedIn} />
           </Route>
           <Route path="/about">
-            <About isLogined={props.isLogined} />
+            <About isLogedIn={props.isLogedIn} />
           </Route>
           <Route path="/posts/:index" exact component={PostDetails} />
           <Route path="/posts">
-            <Posts isLogined={props.isLogined} />
+            <Posts
+            //isLogedIn={props.isLogedIn}
+            />
           </Route>
 
           <Route>
