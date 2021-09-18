@@ -16,14 +16,8 @@ function App() {
 
   return (
     <div className={"App"}>
-      <Header
-      // isLogedIn={isLogedIn}
-      // setIsLogedIn={setIsLogedIn}
-      />
-      <Main
-      // isLogedIn={isLogedIn}
-      // setIsLogedIn={setIsLogedIn}
-      />
+      <Header />
+      <Main />
     </div>
   );
 }
