@@ -6,7 +6,9 @@ import verify from "../../../verify";
 function Profile(props) {
   const isLogedIn = useSelector((state) => state.login.isLogedIn);
   const history = useHistory();
+
   verify(history, isLogedIn);
+
   return (
     <div className="Profile">
       <div className="avatar">

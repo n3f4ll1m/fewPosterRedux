@@ -1,22 +1,17 @@
 import "./PostDetails.scss";
-import { useHistory, withRouter } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchOne } from "../../../../store/actions/action";
 import verify from "../../../../verify";
+import { fetchOne } from "../../../../store/actions/action";
 function PostDetails(props) {
-  const dispatch = useDispatch();
   const index = +props.match.params.index + 1;
   const respData = useSelector((state) => state.post.respDataOne);
   const isLogedIn = useSelector((state) => state.login.isLogedIn);
   const history = useHistory();
+  const dispatch = useDispatch();
   verify(history, isLogedIn);
-  //let [data, setData] = useState({});
-
-  dispatch(fetchOne(index));
-
-  //console.log("DATA", respData);
-  useEffect(() => {});
+  useEffect(() => dispatch(fetchOne(index)), []);
 
   return (
     <div className="PostDetails">
@@ -27,4 +22,4 @@ function PostDetails(props) {
     </div>
   );
 }
-export default withRouter(PostDetails);
+export default PostDetails;

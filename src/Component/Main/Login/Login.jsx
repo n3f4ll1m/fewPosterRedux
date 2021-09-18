@@ -1,6 +1,5 @@
 import "./Login.scss";
 import { NavLink, useHistory } from "react-router-dom";
-
 import { useDispatch, useSelector, connect } from "react-redux";
 import {
   loginAction,

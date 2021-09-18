@@ -1,12 +1,12 @@
 import "./Header.scss";
-import { NavLink, withRouter } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { logoutAction } from "../../store/actions/action";
 function Header(props) {
   const isLogedIn = useSelector((state) => state.login.isLogedIn);
   const dispatch = useDispatch();
-
   const logoutHandler = () => {
-    dispatch({ type: "LOGOUT" });
+    dispatch(logoutAction);
   };
 
   return isLogedIn ? (

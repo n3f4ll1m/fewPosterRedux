@@ -10,7 +10,6 @@ export default function postReducer(state = initialState, action) {
     case FETCH_ONE:
       return { ...state, respDataOne: action.payload };
     case FETCH_ALL: {
-      //console.log("STATE", state);
       return { ...state, respData: action.payload };
     }
 

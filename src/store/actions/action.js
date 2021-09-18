@@ -17,6 +17,7 @@ export const wrongAction = () => {
 export const logoutAction = () => {
   return { type: LOGOUT };
 };
+
 export const loginHandleAction = (payload) => {
   return { type: LOGIN_HANDLE, payload: payload };
 };
@@ -32,31 +33,17 @@ export const fetchOneAction = (payload) => {
 };
 
 export const fetchData = () => {
-  //console.log(index);
-  let path = "https://jsonplaceholder.typicode.com/posts";
-  //console.log(path);
   return (dispatch) => {
-    fetch(path)
-      .then((response) => {
-        //console.log("RESPONSE", response);
-        return response.json();
-      })
-      .then((json) => {
-        //console.log(json);
-        dispatch(fetchAction(json));
-      });
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => response.json())
+      .then((json) => dispatch(fetchAction(json)));
   };
 };
 export const fetchOne = (index) => {
-  let path = "https://jsonplaceholder.typicode.com/posts";
-  if (index !== undefined) {
-    path += "/" + index;
-  }
+  const path = "https://jsonplaceholder.typicode.com/posts/" + index;
   return (dispatch) => {
     fetch(path)
       .then((response) => response.json())
-      .then((json) => {
-        dispatch(fetchOneAction(json));
-      });
+      .then((json) => dispatch(fetchOneAction(json)));
   };
 };

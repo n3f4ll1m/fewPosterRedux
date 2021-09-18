@@ -1,8 +1,7 @@
 import "./Post.scss";
-import { withRouter, useHistory } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 function Post(props) {
-  //const history = useHistory();
-  const postView = (event) => {
+  const postView = () => {
     props.history.push(`/posts/${props.index}`);
   };
   return (
@@ -14,4 +13,3 @@ function Post(props) {
 }
 
 export default withRouter(Post);
-// export default Post;

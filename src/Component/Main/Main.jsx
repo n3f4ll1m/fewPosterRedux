@@ -14,15 +14,10 @@ function Main(props) {
       <div className="Container">
         <Switch>
           <Route path="/" exact>
-            <Profile
-            //isLogedIn={props.isLogedIn}
-            />
+            <Profile />
           </Route>
           <Route path="/login">
-            <Login
-            // isLogedIn={props.isLogedIn}
-            // setIsLogedIn={props.setIsLogedIn}
-            />
+            <Login />
           </Route>
           <Route path="/sign-up">
             <RegForm />
@@ -35,9 +30,7 @@ function Main(props) {
           </Route>
           <Route path="/posts/:index" exact component={PostDetails} />
           <Route path="/posts">
-            <Posts
-            //isLogedIn={props.isLogedIn}
-            />
+            <Posts />
           </Route>
 
           <Route>

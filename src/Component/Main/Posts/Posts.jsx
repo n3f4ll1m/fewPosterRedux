@@ -9,15 +9,15 @@ function Posts(props) {
   const respData = useSelector((state) => state.post.respData);
   const isLogedIn = useSelector((state) => state.login.isLogedIn);
   const history = useHistory();
+
   verify(history, isLogedIn);
-  // props.fetchPosts();
-  //console.log(props);
   useEffect(() => {
     props.fetchPosts();
-  });
+  }, []);
 
   return (
     <div className="Posts">
+      {/* <button onClick={props.fetchPosts}>Load from</button> */}
       {respData.map((item, index) => {
         return (
           <Post
