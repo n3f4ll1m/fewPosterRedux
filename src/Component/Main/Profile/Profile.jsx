@@ -1,18 +1,14 @@
 import "./Profile.scss";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
+import verify from "../../../verify";
 
 function Profile(props) {
-  const isLogedIn = useSelector((state) => state.login.errorText);
-  console.log(isLogedIn);
+  const isLogedIn = useSelector((state) => state.login.isLogedIn);
+  const history = useHistory();
+  verify(history, isLogedIn);
   return (
     <div className="Profile">
-      {!isLogedIn ? (
-        <Redirect from="/" to="/login" />
-      ) : (
-        <Redirect from="/" to="/" />
-      )}
-
       <div className="avatar">
         <img
           src="https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/avatar-256.png"

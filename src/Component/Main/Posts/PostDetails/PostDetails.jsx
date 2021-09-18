@@ -1,29 +1,29 @@
 import "./PostDetails.scss";
-import { withRouter } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchOne } from "../../../../store/actions/action";
+import verify from "../../../../verify";
 function PostDetails(props) {
-  let [data, setData] = useState({});
-  useEffect(() => {
-    let index = +props.match.params.index + 1;
-    console.log("index");
-    fetch("https://jsonplaceholder.typicode.com/posts/" + index)
-      .then((response) => {
-        //console.log("resp", response);
-        return response.json();
-      })
-      .then((json) => {
-        setData(json);
-        //console.log("json", json);
-      });
-  });
-  console.log(data);
+  const dispatch = useDispatch();
+  const index = +props.match.params.index + 1;
+  const respData = useSelector((state) => state.post.respDataOne);
+  const isLogedIn = useSelector((state) => state.login.isLogedIn);
+  const history = useHistory();
+  verify(history, isLogedIn);
+  //let [data, setData] = useState({});
+
+  dispatch(fetchOne(index));
+
+  //console.log("DATA", respData);
+  useEffect(() => {});
 
   return (
     <div className="PostDetails">
-      <h2>{data.title}</h2>
-      <div className="postDesc">{data.body}</div>
-      <div className="postDesc">{data.body}</div>
-      <div className="postDesc">{data.body}</div>
+      <h2>{respData.title}</h2>
+      <div className="postDesc">{respData.body}</div>
+      <div className="postDesc">{respData.body}</div>
+      <div className="postDesc">{respData.body}</div>
     </div>
   );
 }

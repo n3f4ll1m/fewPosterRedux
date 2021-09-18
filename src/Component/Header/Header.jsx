@@ -1,11 +1,15 @@
 import "./Header.scss";
 import { NavLink, withRouter } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 function Header(props) {
-  let logoutHandler = () => {
-    props.setIsLogedIn(false);
+  const isLogedIn = useSelector((state) => state.login.isLogedIn);
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch({ type: "LOGOUT" });
   };
 
-  return props.isLogedIn ? (
+  return isLogedIn ? (
     <header>
       <div className="Logo">
         <NavLink to="/">LOGO</NavLink>
@@ -36,4 +40,4 @@ function Header(props) {
   );
 }
 
-export default withRouter(Header);
+export default Header;

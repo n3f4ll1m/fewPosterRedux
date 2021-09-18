@@ -1,13 +1,13 @@
 import "./Contacts.scss";
-import { Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import verify from "../../../verify";
 function Contacts(props) {
+  const isLogedIn = useSelector((state) => state.login.isLogedIn);
+  const history = useHistory();
+  verify(history, isLogedIn);
   return (
     <div className="Contacts">
-      {!props.isLogedIn ? (
-        <Redirect from="/contacts" to="/login" />
-      ) : (
-        <Redirect from="/contacts" to="/contacts" />
-      )}
       <h2>This is my contacts</h2>
       <div className="postDesc">
         <p>
@@ -19,7 +19,7 @@ function Contacts(props) {
         <p>
           <span>Phone: </span>091725853
         </p>
-        <a href="https://github.com/n3f1l1m">
+        <a href="https://github.com/n3f4ll1m">
           <span>GitHub</span>
         </a>
       </div>

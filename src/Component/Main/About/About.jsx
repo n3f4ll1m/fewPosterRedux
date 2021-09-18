@@ -1,13 +1,13 @@
 import "./About.scss";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import verify from "../../../verify";
 function About(props) {
+  const isLogedIn = useSelector((state) => state.login.isLogedIn);
+  const history = useHistory();
+  verify(history, isLogedIn);
   return (
     <div className="About">
-      {!props.isLogedIn ? (
-        <Redirect from="/about" to="/login" />
-      ) : (
-        <Redirect from="/about" to="/about" />
-      )}
       <h2>About</h2>
       <div className="postDesc">
         This project created by React js for education.

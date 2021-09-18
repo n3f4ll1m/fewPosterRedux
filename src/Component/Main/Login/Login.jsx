@@ -1,41 +1,54 @@
 import "./Login.scss";
-import { NavLink, withRouter } from "react-router-dom";
-import { useState } from "react";
+import { NavLink, useHistory } from "react-router-dom";
+
 import { useDispatch, useSelector, connect } from "react-redux";
+import {
+  loginAction,
+  loginHandleAction,
+  wrongAction,
+  passwordHandleAction
+} from "../../../store/actions/action";
 
 function Login(props) {
-  const data = {};
   const errorText = useSelector((state) => state.login.errorText);
+  const userLogin = useSelector((state) => state.login.login);
+  const userPass = useSelector((state) => state.login.password);
   const dispatch = useDispatch();
-  let checkData = () => {
-    if (data.Login === "admin" && data.Password === "admin") {
-      dispatch({ type: "LOGIN" });
-      props.history.push("/");
+  const history = useHistory();
+
+  const checkData = () => {
+    if (userLogin === "admin" && userPass === "admin") {
+      dispatch(loginAction());
+      history.push("/");
     } else {
-      //console.log("Whats wrong");
-      dispatch({ type: "WRONG" });
+      dispatch(wrongAction());
     }
-    console.log(props);
   };
-  let inputHandler = (event) => {
-    let name = event.target.name;
-    let value = event.target.value;
-    data[name] = value;
+
+  const loginInputHandler = (event) => {
+    dispatch(loginHandleAction(event.target.value));
   };
+
+  const passwordInputHandler = (event) => {
+    dispatch(passwordHandleAction(event.target.value));
+  };
+
   return (
     <form className="Login Form">
       <span>LOGIN</span>
       <input
         name="Login"
-        onChange={inputHandler}
+        onChange={loginInputHandler}
         type="text"
         placeholder="Login"
+        value={userLogin}
       />
       <input
         name="Password"
-        onChange={inputHandler}
+        onChange={passwordInputHandler}
         type="password"
         placeholder="Password"
+        value={userPass}
       />
       <div className="ErrorText">{errorText}</div>
       <button type="button" onClick={checkData}>
@@ -46,4 +59,4 @@ function Login(props) {
   );
 }
 
-export default connect()(withRouter(Login));
+export default connect()(Login);
